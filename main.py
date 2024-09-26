@@ -154,8 +154,6 @@ if submitted:
     else:
         #get the selected nutrional values column names
         selected_columns = [feature_mapping[feature] for feature in selected_features]
-        print(f'Selected columns:', selected_columns)
-        st.write(selected_columns)
         #create a data frame of the selected columns
         df_selected = df[selected_columns]
         #Kmeans and assigning the labels back onto the main Dataframe
@@ -169,15 +167,13 @@ if submitted:
 
         #scatter plot
         data = df[[col1_name, col2_name, 'Cluster']]
-        print("This is the DATA *******************************")
-        print(data)
         st.scatter_chart(
             data,
             x=col1_name,
             y=col2_name,
             color='Cluster'
         )
-        st.dataframe(df, height=500)
+        #st.dataframe(df, height=500)
         #histograms plots of the chosen nutrinoal values
         #plot for the first selected feature
         st.write(f"Histogram of {selected_features[0]} values")
@@ -210,7 +206,7 @@ if submitted:
         print(similar_items)
         #sort distnace to find the most similar items from similar_items to the selected_item
         recommended_items = similar_items.sort_values(by='Distance').head(3)
-        st.write(f"These are the three most similar items to {selected_item}:")
+        st.write(f"These are the three most similar items to {selected_item}, based off the nutritional traits:")
         st.write(recommended_items[['Category', 'Item']])
 
 
