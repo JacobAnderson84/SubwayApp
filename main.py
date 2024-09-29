@@ -109,7 +109,7 @@ df["Weight Watchers Pnts Scaled"] = weight_watcher_points_scaled
 # optomise_k_means(df[["Calories Scaled", "Sodium Scaled"]], 10)
 # optomise_k_means(df[["Trans Fat Scaled", "Sodium Scaled"]], 10)
 st.title("Subway Sandwich Recommendation App")
-st.write("With this app you can select one of your favorite subway sandwiches and two nutrional values that you are tracking. The application will take your choices and give you the top 3 sandwiches most like your selection.")
+st.write("With this app you can select one of your favorite subway items and two nutrional values that you are tracking. The application will take your choices and give you the top 3 menu items most like your selection.")
 
 st.write("Below is a bar chart showing the amount of items per Category")
 #bar chart to look at different cateogries of items in the data
@@ -186,6 +186,7 @@ if submitted:
         fig, ax = plt.subplots()
         sns.histplot(df[selected_features[1]])
         ax.set_title((f"Distribution of {selected_features[1]} values"))
+
         st.pyplot(fig)
 
         #find the selected_item cluster
