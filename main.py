@@ -21,6 +21,7 @@ calories_reshaped = np.array(calories).reshape(-1, 1)
 calories_scaled = scaler.fit_transform(calories_reshaped)
 df["Calories Scaled"] = calories_scaled
 
+
 #min-max for total fat
 total_fat = df["Total Fat (g)"]
 total_fat_reshaped = np.array(total_fat).reshape(-1, 1)
@@ -145,8 +146,6 @@ with st.form("Sandwich Selection"):
                                        default=['Calories', 'Carbs (g)'])
 
     submitted = st.form_submit_button("Go")
-    print(selected_features)
-    print(len(selected_features))
 
 if submitted:
     if len(selected_features) != 2:
@@ -204,7 +203,6 @@ if submitted:
         similar_items_data = similar_items[selected_columns]
         #calculate distance between selcted_item and similar_items based on the selected columns
         similar_items['Distance'] = similar_items_data[selected_columns].apply(lambda row:((row - selected_item_data) ** 2).sum() ** 0.5, axis=1)
-        print(similar_items)
         #sort distnace to find the most similar items from similar_items to the selected_item
         recommended_items = similar_items.sort_values(by='Distance').head(3)
         st.write(f"These are the three most similar items to {selected_item}, based off the nutritional traits:")
